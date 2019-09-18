@@ -128,8 +128,11 @@ services:
         - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}${APP_CODE_CONTAINER_FLAG}
       extra_hosts:
         - "dockerhost:${DOCKER_HOST_IP}"
+        - "cms.local:0.0.0.0"
       ports:
         - "${WORKSPACE_SSH_PORT}:22"
+        - "8081:8081"
+        - "6001:6001"
       tty: true
       environment:
         - PHP_IDE_CONFIG=${PHP_IDE_CONFIG}
@@ -198,6 +201,8 @@ services:
         - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}${APP_CODE_CONTAINER_FLAG}
       expose:
         - "9000"
+      ports:
+        - "9912:9912"
       extra_hosts:
         - "dockerhost:${DOCKER_HOST_IP}"
       environment:
@@ -654,6 +659,7 @@ services:
     phpmyadmin:
       build: ./phpmyadmin
       environment:
+        - PMA_HOST=mysql
         - PMA_ARBITRARY=1
         - MYSQL_USER=${PMA_USER}
         - MYSQL_PASSWORD=${PMA_PASSWORD}
