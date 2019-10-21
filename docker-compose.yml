@@ -323,10 +323,20 @@ services:
         - "${APACHE_HOST_HTTPS_PORT}:443"
       depends_on:
         - php-fpm
+      # networks:
+      #   - frontend
+      #   - backend
       networks:
-        - frontend
-        - backend
-
+        frontend:
+         aliases:
+          - auth.goido.local
+          - app.goido.local
+          - pos.goido.local
+        backend:
+         aliases:
+          - auth.goido.local
+          - app.goido.local
+          - pos.goido.local
 ### HHVM #################################################
     hhvm:
       build: ./hhvm
