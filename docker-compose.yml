@@ -134,6 +134,8 @@ services:
         - "8081:8081"
         - "6001:6001"
         - "9912:9912"
+        - "8000:8000"
+        - "9528:9528"
       tty: true
       environment:
         - PHP_IDE_CONFIG=${PHP_IDE_CONFIG}
@@ -329,12 +331,12 @@ services:
       networks:
         frontend:
          aliases:
-          - auth.goido.local
+          - console.goido.local
           - app.goido.local
           - pos.goido.local
         backend:
          aliases:
-          - auth.goido.local
+          - console.goido.local
           - app.goido.local
           - pos.goido.local
 ### HHVM #################################################
